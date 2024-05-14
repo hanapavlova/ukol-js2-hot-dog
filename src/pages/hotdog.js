@@ -3,7 +3,7 @@ export const toppings = [
     { name: 'Kečup', price: 5, selected: false },
     { name: 'Cibule', price: 5, selected: false },
     { name: 'Okurka', price: 5, selected: false },
-    { name: 'Paprika', price: 5, selected: false },
+    { name: 'Paprika', price: 5, selected: true },
     { name: 'Rajče', price: 5, selected: false },
     { name: 'Chilli', price: 5, selected: false },
     { name: 'Sýr', price: 10, selected: false },
@@ -11,11 +11,14 @@ export const toppings = [
   ];
 
 export const toggleToppings = (index) => {
-    toppings[index].selected = !toppings[index].selected;
+        toppings[index].selected = !toppings[index].selected;
+        renderToppings();
   }
 
 export const renderToppings = () => {
-    toppings.forEach((item) => {
+  document.body.innerHTML = '';
+  
+  toppings.forEach((item) => {
     
       if (item.selected===true){
         document.body.innerHTML += `
@@ -30,14 +33,12 @@ export const renderToppings = () => {
         <p>${item.price} Kč</p>
         </div>
       `;}
-    
   });
-  const toppingElm = document.querySelectorAll(".topping");
-
-  toppingElm.forEach((index) => {
-    toppingElm.addEventListener("click", toggleToppings(index));
+      const toppingElm = document.querySelectorAll(".topping");
+      toppingElm.forEach((item, index) => {
+        item.addEventListener("click", () => toggleToppings(index));
   })};
-  renderToppings();  
+  
 
 
 
